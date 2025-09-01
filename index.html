@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me-API Playground - Alex Johnson</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Me-API Playground</h1>
+                <nav class="nav">
+                    <button class="nav__item nav__item--active" data-view="profile">Profile</button>
+                    <button class="nav__item" data-view="projects">Projects</button>
+                    <button class="nav__item" data-view="skills">Skills</button>
+                    <button class="nav__item" data-view="search">Search</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Loading State -->
+                <div id="loading" class="loading hidden">
+                    <div class="loading__spinner"></div>
+                    <p>Loading...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="error" class="error hidden">
+                    <p class="error__message"></p>
+                    <button class="btn btn--secondary" onclick="location.reload()">Retry</button>
+                </div>
+
+                <!-- Profile View -->
+                <div id="profile-view" class="view view--active">
+                    <section class="profile">
+                        <div class="profile__header">
+                            <h2 id="profile-name">Alex Johnson</h2>
+                            <p id="profile-email" class="profile__email">alex.johnson@email.com</p>
+                            <div class="profile__links">
+                                <a id="github-link" href="#" target="_blank" class="btn btn--outline btn--sm">GitHub</a>
+                                <a id="linkedin-link" href="#" target="_blank" class="btn btn--outline btn--sm">LinkedIn</a>
+                                <a id="portfolio-link" href="#" target="_blank" class="btn btn--outline btn--sm">Portfolio</a>
+                            </div>
+                        </div>
+
+                        <div class="profile__grid">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Education</h3>
+                                    <div id="education-list" class="education-list"></div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Skills</h3>
+                                    <div id="skills-list" class="skills-list"></div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Work Experience</h3>
+                                    <div id="work-list" class="work-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Projects View -->
+                <div id="projects-view" class="view hidden">
+                    <section class="projects">
+                        <div class="projects__header">
+                            <h2>Projects</h2>
+                            <div class="projects__filters">
+                                <button class="btn btn--secondary btn--sm filter-btn filter-btn--active" data-skill="all">All</button>
+                                <div id="skill-filters" class="skill-filters"></div>
+                            </div>
+                        </div>
+                        <div id="projects-grid" class="projects__grid"></div>
+                    </section>
+                </div>
+
+                <!-- Skills View -->
+                <div id="skills-view" class="view hidden">
+                    <section class="skills-dashboard">
+                        <h2>Skills Dashboard</h2>
+                        <div class="skills-dashboard__stats">
+                            <div class="stat-card">
+                                <span class="stat-card__number" id="total-skills">0</span>
+                                <span class="stat-card__label">Total Skills</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-card__number" id="total-projects">0</span>
+                                <span class="stat-card__label">Projects</span>
+                            </div>
+                        </div>
+                        <div id="top-skills" class="top-skills"></div>
+                    </section>
+                </div>
+
+                <!-- Search View -->
+                <div id="search-view" class="view hidden">
+                    <section class="search">
+                        <div class="search__header">
+                            <h2>Search</h2>
+                            <div class="search__input-group">
+                                <input type="text" id="search-input" class="form-control" placeholder="Search projects, skills, or any content...">
+                                <button class="btn btn--primary" id="search-btn">Search</button>
+                            </div>
+                        </div>
+                        <div id="search-results" class="search__results"></div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- API Status -->
+        <div class="api-status">
+            <span class="status" id="api-status">
+                <span class="status__indicator"></span>
+                API Status: <span id="api-status-text">Checking...</span>
+            </span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
